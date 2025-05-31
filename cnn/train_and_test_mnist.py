@@ -97,9 +97,9 @@ def main():
     print("First testing example label:", y_test[0], "with shape:", X_test[0].shape)
     
     # create datasets
-    train_dataset = MNISTDataset(X_train.numpy(), y_train.numpy())
-    val_dataset = MNISTDataset(X_val.numpy(), y_val.numpy())
-    test_dataset = MNISTDataset(X_test.numpy(), y_test.numpy())
+    train_dataset = MNISTDataset(X_train, y_train)
+    val_dataset = MNISTDataset(X_val, y_val)
+    test_dataset = MNISTDataset(X_test, y_test)
     
     # data loaders
     train_loader = DataLoader(train_dataset, batch_size=64, shuffle=True)
