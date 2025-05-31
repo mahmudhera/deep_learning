@@ -2,6 +2,8 @@ import os
 import pandas as pd
 import numpy as np
 
+import torch
+
 training_filename = 'mnist/mnist_train.csv'
 testing_filename = 'mnist/mnist_test.csv'
 
@@ -35,8 +37,20 @@ def load_data():
     indices = np.random.permutation(len(X_train))
     X_train, X_val = X_train[indices[:-validation_size]], X_train[indices[-validation_size:]]
     y_train, y_val = y_train[indices[:-validation_size]], y_train[indices[-validation_size:]]
+    
+    # convert the data to pytorch tensors
+    X_train = torch.tensor(X_train, dtype=torch.float32)
+    y_train = torch.tensor(y_train, dtype=torch.long)
+    X_val = torch.tensor(X_val, dtype=torch.float32)
+    y_val = torch.tensor(y_val, dtype=torch.long)
+    X_test = torch.tensor(X_test, dtype=torch.float32)
+    y_test = torch.tensor(y_test, dtype=torch.long)
 
     return X_train, y_train, X_val, y_val, X_test, y_test
+
+
+def train(X_train, y_train, X_val, y_val):
+    
 
 
 def main():
