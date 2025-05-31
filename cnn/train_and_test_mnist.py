@@ -11,7 +11,7 @@ from torch.utils.data import Dataset
 
 class MNISTDataset(Dataset):
     def __init__(self, images, labels):
-        self.images = torch.tensor(images).permute(0, 3, 1, 2)  # Convert to (N, C, H, W)
+        self.images = torch.tensor(images).float()
         self.labels = torch.tensor(labels).long()
 
     def __len__(self):
