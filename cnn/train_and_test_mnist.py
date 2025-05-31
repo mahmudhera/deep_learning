@@ -39,12 +39,12 @@ def load_data():
     y_train, y_val = y_train[indices[:-validation_size]], y_train[indices[-validation_size:]]
     
     # convert the data to pytorch tensors
-    X_train = torch.tensor(X_train, dtype=torch.float32)
-    y_train = torch.tensor(y_train, dtype=torch.long)
-    X_val = torch.tensor(X_val, dtype=torch.float32)
-    y_val = torch.tensor(y_val, dtype=torch.long)
-    X_test = torch.tensor(X_test, dtype=torch.float32)
-    y_test = torch.tensor(y_test, dtype=torch.long)
+    X_train = torch.from_numpy(X_train, dtype=torch.float32)
+    y_train = torch.from_numpy(y_train, dtype=torch.long)
+    X_val = torch.from_numpy(X_val, dtype=torch.float32)
+    y_val = torch.from_numpy(y_val, dtype=torch.long)
+    X_test = torch.from_numpy(X_test, dtype=torch.float32)
+    y_test = torch.from_numpy(y_test, dtype=torch.long)
 
     return X_train, y_train, X_val, y_val, X_test, y_test
 
