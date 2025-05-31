@@ -1,5 +1,6 @@
 import os
 import pandas as pd
+import numpy as np
 
 training_filename = 'mnist/mnist_train.csv'
 testing_filename = 'mnist/mnist_test.csv'
@@ -21,14 +22,26 @@ def load_data():
     y_train = train_data.iloc[:, 0].values  # The first column
     X_test = test_data.iloc[:, 1:].values  # All columns except the first one
     y_test = test_data.iloc[:, 0].values  # The first column
+    
+    # partition train data into training and validation sets
+    validation_data_fraction = 0.1
+    validation_size = int(len(X_train) * validation_data_fraction)
+    
+    # randomly select validation data
+    indices = np.random.permutation(len(X_train))
+    X_train, X_val = X_train[indices[:-validation_size]], X_train[indices[-validation_size:]]
+    y_train, y_val = y_train[indices[:-validation_size]], y_train[indices[-validation_size:]]
 
-    return X_train, y_train, X_test, y_test
+    return X_train, y_train, X_val, y_val, X_test, y_test
 
 
 def main():
-    X_train, y_train, X_test, y_test = load_data()
+    X_train, y_train, X_val, y_val, X_test, y_test = load_data()
+    
     print(f"Training data shape: {X_train.shape}, Labels shape: {y_train.shape}")
+    print(f"Validation data shape: {X_val.shape}, Labels shape: {y_val.shape}")
     print(f"Testing data shape: {X_test.shape}, Labels shape: {y_test.shape}")
+    
     
 if __name__ == "__main__":
     main()
