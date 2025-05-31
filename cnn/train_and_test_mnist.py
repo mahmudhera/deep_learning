@@ -23,6 +23,10 @@ def load_data():
     X_test = test_data.iloc[:, 1:].values  # All columns except the first one
     y_test = test_data.iloc[:, 0].values  # The first column
     
+    # the data are 784 pixels, reshape them to 28x28
+    X_train = X_train.reshape(-1, 28, 28, 1).astype('float32') / 255.0  # Normalize to [0, 1]
+    X_test = X_test.reshape(-1, 28, 28, 1).astype('float32') / 255.0  # Normalize to [0, 1]
+    
     # partition train data into training and validation sets
     validation_data_fraction = 0.1
     validation_size = int(len(X_train) * validation_data_fraction)
@@ -41,6 +45,12 @@ def main():
     print(f"Training data shape: {X_train.shape}, Labels shape: {y_train.shape}")
     print(f"Validation data shape: {X_val.shape}, Labels shape: {y_val.shape}")
     print(f"Testing data shape: {X_test.shape}, Labels shape: {y_test.shape}")
+    
+    # show the first example in the training set, and the test set, and the validation set
+    print("First training example label:", y_train[0], "with shape:", X_train[0].shape)
+    print("First validation example label:", y_val[0], "with shape:", X_val[0].shape)
+    print("First testing example label:", y_test[0], "with shape:", X_test[0].shape)
+    
     
     
 if __name__ == "__main__":
