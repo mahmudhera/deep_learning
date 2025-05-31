@@ -49,10 +49,6 @@ def load_data():
     return X_train, y_train, X_val, y_val, X_test, y_test
 
 
-def train(X_train, y_train, X_val, y_val):
-    
-
-
 def main():
     X_train, y_train, X_val, y_val, X_test, y_test = load_data()
     
