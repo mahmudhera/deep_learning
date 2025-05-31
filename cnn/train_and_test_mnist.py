@@ -12,8 +12,8 @@ def load_data():
     if not os.path.exists(training_filename) or not os.path.exists(testing_filename):
         raise FileNotFoundError("MNIST dataset files not found. Please ensure they are in the correct directory.")
 
-    train_data = pd.read_csv(training_filename)
-    test_data = pd.read_csv(testing_filename)
+    train_data = pd.read_csv(training_filename, header=None)
+    test_data = pd.read_csv(testing_filename, header=None)
     
     # there are no headers
 
